@@ -52,7 +52,7 @@ class NewPost(Handler):
             
         else:
             error = "We need both a title and text."
-            self.render_front(title, post_text, error)
+            self.render_new(title, post_text, error)
 
 app = webapp2.WSGIApplication([
     ('/blog', MainPage),
