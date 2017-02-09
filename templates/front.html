@@ -10,6 +10,16 @@
         <pre class = "post_text">{{post.post_text}}</pre>
         </div>
     {% endfor %}
+    <br>
+    <div class="nav">
+    {% if page > 0 %}
+    <a class="one"href="/blog?page={{page - 1}}">newer</a>|
+    {% endif %}
+    {% if limit < posts.count() and page < posts.count()//limit %}
+    <a class="one"href="/blog?page={{page + 1}}">older</a>
+    {%endif%}
+    </div>
+
 
 
 
