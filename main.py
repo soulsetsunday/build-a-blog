@@ -48,13 +48,28 @@ class NewPost(Handler):
         if title and post_text:
             a = Post(title = title, post_text = post_text)
             a.put()
-            self.redirect("/blog")
+            key = str(a.key().id())
+            redirectstring = "/blog/"+key
+            self.redirect(redirectstring)
             
         else:
             error = "We need both a title and text."
             self.render_new(title, post_text, error)
-
+            
+class ViewPostHandler(Handler):
+    def get(self, id):
+        if Post.get_by_id(int(id)):
+            post = Post.get_by_id(int(id))
+            #self.response.write(post.post_text)
+            self.render("singlepost.html", title=post.title, text=post.post_text)
+        else:
+            error = "No post found with that id"
+            posts = db.GqlQuery("select * from Post order by created desc limit 5")
+            self.render("front.html", error=error, posts=posts)
+        
+        
 app = webapp2.WSGIApplication([
     ('/blog', MainPage),
-    ('/blog/newpost', NewPost)
+    ('/blog/newpost', NewPost),
+    webapp2.Route('/blog/<id:\d+>', ViewPostHandler)
 ], debug=True)
