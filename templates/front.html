@@ -13,9 +13,12 @@
     <br>
     <div class="nav">
     {% if page > 0 %}
-    <a class="one"href="/blog?page={{page - 1}}">newer</a>|
+    <a class="one"href="/blog?page={{page - 1}}">newer</a>
     {% endif %}
     {% if limit < posts.count() and page < posts.count()//limit %}
+    {# if there are more posts than the per-page limit#}
+    {# and page is less than total posts//per-page limit #}
+    {# I don't see why I put the second part in #}
     <a class="one"href="/blog?page={{page + 1}}">older</a>
     {%endif%}
     </div>

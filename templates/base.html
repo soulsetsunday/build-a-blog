@@ -49,12 +49,24 @@
             color:white;
             }
         
-        a.one:link{color:white;}
-        a.one:visited {color:lightgrey;}
+        .nav a:link{
+            color:white;
+            padding: 10px 10px;
+            background-color:black;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;}
+        .nav a:visited {
+            color:lightgrey;
+            background-color:black;
+            padding: 10px 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;}
     </style>
 
     <body>
-        <div class="nav"><a class="one" href="/blog">home</a>|<a class="one"href="/blog/newpost">new post</a>
+        <div class="nav"><a href="/blog">home</a><a class="one"href="/blog/newpost">new post</a>
         </div>
         <div class="error">{{error}}</div>
         {% block content %}
